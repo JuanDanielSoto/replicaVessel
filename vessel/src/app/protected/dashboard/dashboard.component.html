@@ -1,0 +1,9 @@
+
+
+<app-loading *ngIf="!isUserLocationReady(); else mapReady"></app-loading>
+
+<ng-template #mapReady>
+  <app-map-view (onVessel)="loadVessel($event)">  </app-map-view>
+  <app-search *ngIf="activate" [vessel]="vessel"></app-search>
+</ng-template>
+

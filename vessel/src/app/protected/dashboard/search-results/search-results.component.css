@@ -1,0 +1,18 @@
+.pointer{
+  cursor:pointer;
+}
+
+p{
+  font: size 12px;
+}
+
+.props{
+  overflow-y: auto;
+  max-height: 20em;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}

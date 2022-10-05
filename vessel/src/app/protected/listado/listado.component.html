@@ -1,0 +1,42 @@
+
+<header class="header">
+  <h1>Listado</h1>
+  <p>User: {{usuario.name}} |
+    <button (click)="logout()">
+        Logout
+    </button>
+  </p>
+</header>
+
+<hr>
+<div class="listado">
+  <span>
+    Search:<input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="text" placeholder="Buscar..." class="form-control">
+  </span>
+  <div class="props">
+    <table class="table table-striped table-bordered props">
+      <thead>
+        <tr>
+          <th>Indice</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let name of  this.names;let indice=index">
+        <tr>
+          <td>{{indice+1}}</td>
+          <td>
+            <button routerLink="/listado/map/{{name}}" >
+              {{name}}
+          </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h6 class="listado">Unidad de Investigación y Desarrollo Tecnológico | Christian Ísai Rodriguez</h6>
+</div>
+
+
+
+
+

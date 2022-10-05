@@ -1,0 +1,24 @@
+.listado{
+  /* position: fixed; */
+  top:20px;
+  left:100px;
+  right:100px;
+
+  background-color: white;
+  padding:20px;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+.props{
+  overflow-y: auto;
+  max-height: 25em;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
