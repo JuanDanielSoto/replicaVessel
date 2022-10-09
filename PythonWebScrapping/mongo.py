@@ -21,15 +21,21 @@ if __name__ == "__main__":
     # Get the database
     dbname = get_database()
     collection_name = dbname["vessels"]
-    jsonL = json.load(  open('dbVesselSorted.json', 'r'))
+    jsonL = json.load(  open('transformedDB.json', 'r'))
     names = open("names.txt","w")
-    for item in jsonL["vessels"]:
-        if "Lat" in jsonL["vessels"][item].keys():
-            keys = list(jsonL["vessels"][item].keys()).copy()
-            newItem = {}
-            for key in keys:
-                newItem[key.replace(' ',"_").replace('(',"").replace(')',"").replace('/',"")] = jsonL["vessels"][item][key]
-            names.write( '"'+item+'",\n')
-            print(newItem)
-            collection_name.insert_one(newItem)
+    
+    for i, vessel in enumerate(jsonL.keys()):
+        collection_name.insert_one(jsonL[vessel])
+        print(i,end="\r")
+    
+    
+    # for item in jsonL["vessels"]:
+    #     if "Lat" in jsonL["vessels"][item].keys():
+    #         keys = list(jsonL["vessels"][item].keys()).copy()
+    #         newItem = {}
+    #         for key in keys:
+    #             newItem[key.replace(' ',"_").replace('(',"").replace(')',"").replace('/',"")] = jsonL["vessels"][item][key]
+    #         names.write( '"'+item+'",\n')
+    #         print(newItem)
+    #         collection_name.insert_one(newItem)
     names.close()
