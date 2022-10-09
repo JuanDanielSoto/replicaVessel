@@ -1,6 +1,10 @@
 import requests, json
 from bs4 import BeautifulSoup
 
+"""Para correr es necesario dar la pagina de inicio, cada 10 paginas leidas el código se detiene por losproblemas con la ram y el internet
+se debe actualizar a la pagina correspondiente
+"""
+
 def getData(link:str):
     """Realiza el proceso de obtener los datos de cada barco individual
 
@@ -38,24 +42,33 @@ def getData(link:str):
         print("\nImagen ",ex,datas,link)
     return pageData
     
-ww = "http://"; host = "www.vesselfinder.com"; loc = "/vessels"; head={"Host":host,"User-Agent":"PostmanRuntime/7.26.8"}; page = 30; lon = 0; finish=False; datos={}; pages=1
+ww = "http://"; host = "www.vesselfinder.com"; loc = "/vessels"; head={"Host":host,"User-Agent":"PostmanRuntime/7.26.8"}; page = 66; lon = 0; finish=False; datos={}; pages=1
 while True:
-    
     req = requests.get(ww+host+loc, headers=head,
                     params={"flag":"MX","dir":2,"sort":5,"page":page})
     soup = BeautifulSoup(req.content, "html.parser")
     lClass = soup.find_all(class_="v1")
+    lClass3 = soup.find_all(class_="v3")
+    lClass4 = soup.find_all(class_="v4")
+    lClass5 = soup.find_all(class_="v5")
+    lClass6 = soup.find_all(class_="v6")
     if len(lClass)==0: break
     for i, clase in enumerate(lClass):
         if i>0:
             print("Paginas:",page," elemento:",i,end="         \r")
             element = str(clase).split('href="')[1].split('"')[0]
+            print(clase)
             datos[str(page)+","+str(i)] = getData(ww+host+element)
+            datos[str(page)+","+str(i)]["Built"] = str(lClass3[i]).split(">")[1].split("<")[0]
+            datos[str(page)+","+str(i)]["GT"] = str(lClass4[i]).split(">")[1].split("<")[0]
+            datos[str(page)+","+str(i)]["DWT"] = str(lClass5[i]).split(">")[1].split("<")[0]
+            datos[str(page)+","+str(i)]["Size (m)"] = str(lClass6[i]).split(">")[1].split("<")[0]
     if pages ==10:
         with open('dbVessel'+str(page)+'.json', 'w') as outfile: json.dump(datos, outfile)
         datos = {}
         pages = 1
     pages += 1
     page += 1
+    
 with open('dbVessel'+str(page)+'.json', 'w') as outfile: json.dump(datos, outfile)
 print("\n"+"Terminado")
