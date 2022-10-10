@@ -456,11 +456,24 @@ export class MongoService {
   ]
   constructor(private http: HttpClient) { }
 
-  getCoors( Vessel_Name: string ) {
+  getList( page: number, items: number) {
+    const url  = `${ this.baseUrl }/elements/list`;
+    const body = { page: page, items: items };
+    return this.http.post<AuthResponse>( url, body )
+      .pipe(
+        tap( resp => {
+          if (resp.ok) {
 
+          }
+        }),
+        map( resp => resp.msg ),
+        catchError( err => of(err.error.msg) )
+      );
+  }
+
+  getCoors( Vessel_Name: string ) {
     const url  = `${ this.baseUrl }/elements`;
     const body = { Vessel_Name };
-
     return this.http.post<AuthResponse>( url, body )
       .pipe(
         tap( resp => {
@@ -474,10 +487,8 @@ export class MongoService {
   }
 
   updateCoors( Vessel_Name: string ) {
-
     const url  = `${ this.baseUrl }/elements/scrap`;
     const body = { Vessel_Name };
-
     return this.http.put<UpdateResponse>( url, body )
       .pipe(
         tap( resp => {
