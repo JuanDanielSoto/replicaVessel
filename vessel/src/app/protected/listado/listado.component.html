@@ -1,4 +1,3 @@
-
 <header class="header">
   <h1>Listado</h1>
   <p>User: {{usuario.name}} |
@@ -7,25 +6,65 @@
     </button>
   </p>
 </header>
-
 <hr>
 <div class="listado">
-  <span>
+  <h3>Filtros:</h3>
+  <div style="column-count:3">
+    <li align="right">
+      <h4>Construido:</h4>
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
+    </li>
+  </div>
+  <div style="column-count:3">
+    <li align="right">
+      <h4>GT:</h4>
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
+    </li>
+  </div>
+  <div style="column-count:3">
+    <li align="right">
+      <h4>DWT:</h4>
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
+    </li>
+  </div>
+  <div style="column-count:3">
+    <li align="right">
+      <h4>Tamaño (m):</h4>
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
+      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
+    </li>
+  </div>
+  <div style="column-count:3">
+    <li>-</li>
+    <li align="left">
+      <h4><input type="checkbox" name="cb-autos"> Con Coordenadas</h4>
+    </li>
+    <li align="left">
+      <h4><input type="checkbox" name="cb-autos"> Con Foto</h4>
+    </li>
+  </div>
+  <!-- <span>
     Search:<input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="text" placeholder="Buscar..." class="form-control">
-  </span>
+  </span> -->
   <hr>
   <div *ngIf="this.list!=null">
-    <h3>Página actual {{this.page}}</h3>
-    <div style="align-content:right">
-      <button (click)="pageSelect(page)" style="color:blue;"> 1 </button>,
-      <span *ngFor="let page of this.pagesBefore" >
-        <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
-      </span>
-      ...
-      <span *ngFor="let page of this.pagesAfter">
-        <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
-      </span>
-      <button (click)="pageSelect(page)" style="color:blue;"> {{this.list!.msg.info.pages}} </button>
+
+    <div style="align-content:right;column-count:2">
+      <h3>Página actual -> {{this.page}}</h3>
+      <div align="right">
+        <button (click)="pageSelect(1)" style="color:blue;"> 1 </button>,
+        <span *ngFor="let page of this.pagesBefore" >
+          <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
+        </span>
+        ...
+        <span *ngFor="let page of this.pagesAfter">
+          <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
+        </span>
+        <button (click)="pageSelect(this.list.msg.info.pages)" style="color:blue;"> {{this.list!.msg.info.pages}} </button>
+      </div>
     </div>
     <div class="props">
       <table class="table table-bordered props" style="height: 100%;">
