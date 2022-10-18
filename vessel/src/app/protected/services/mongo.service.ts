@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthResponse, UpdateResponse } from 'src/app/auth/interfaces/interfaces';
 import { environment } from 'src/environments/environment';
+import { List } from '../interfaces/List';
 import { Vessel } from '../interfaces/mongoInter';
 
 @Injectable({
@@ -466,7 +467,7 @@ export class MongoService {
 
           }
         }),
-        map( resp => resp.msg ),
+        map( resp => resp ),
         catchError( err => of(err.error.msg) )
       );
   }
