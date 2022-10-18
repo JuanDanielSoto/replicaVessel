@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "bootstrap": "^5.2.0",
+    "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^2.10.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.13.0",

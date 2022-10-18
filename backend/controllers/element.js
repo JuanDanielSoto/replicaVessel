@@ -24,6 +24,7 @@ const getList = async(req, res = response ) => {
         var x = (page-1)*items;
         var y = x+items;
         // console.log(x, y);
+        console.log("/api/elements/list: ",{ page, items })
         return res.json({
             ok: true,
             msg: {

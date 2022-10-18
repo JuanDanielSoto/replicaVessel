@@ -3,6 +3,7 @@
   top:20px;
   left:100px;
   right:100px;
+  height: auto;
 
   background-color: white;
   padding:20px;
@@ -12,7 +13,7 @@
 
 .props{
   overflow-y: auto;
-  max-height: 25em;
+  max-height: 70em;
 }
 
 .header {
