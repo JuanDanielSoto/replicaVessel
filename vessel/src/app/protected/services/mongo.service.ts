@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthResponse, UpdateResponse } from 'src/app/auth/interfaces/interfaces';
 import { environment } from 'src/environments/environment';
-import { List } from '../interfaces/List';
+import { BodyList, List } from '../interfaces/List';
 import { Vessel } from '../interfaces/mongoInter';
 
 @Injectable({
@@ -457,9 +457,8 @@ export class MongoService {
   ]
   constructor(private http: HttpClient) { }
 
-  getList( page: number, items: number) {
+  getList( body:BodyList) {
     const url  = `${ this.baseUrl }/elements/list`;
-    const body = { page: page, items: items };
     return this.http.post<AuthResponse>( url, body )
       .pipe(
         tap( resp => {

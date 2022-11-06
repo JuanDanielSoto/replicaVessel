@@ -1,11 +1,13 @@
 const { response } = require('express');
 const { scrap } = require('../middlewares/scrap');
+const { filterList } = require('../middlewares/validar-campos');
 const Vessel = require('../models/Vessel');
 
 
 const getList = async(req, res = response ) => {
-    const { page, items } = req.body;
+    const { page, items, photo, coors, built, gt, dwt, size } = req.body;
     // Leer la base de datos
+    console.log(photo);
     try {
         const dbUser = await Vessel.find();
         if(  !dbUser ) {
@@ -15,7 +17,27 @@ const getList = async(req, res = response ) => {
             });
         }
         // Respuesta del servicio
-        var pages = dbUser.length/items
+        let filter = []
+        for(let i of dbUser){
+            if(photo||coors){
+                if(photo&&coors){
+                    if(i["photoReal"]&&i["coords"]){
+                        filter.push(i);
+                    }
+                }else{
+                    if(photo&&i["photoReal"]){
+                        filter.push(i);
+                    }
+                    if(coors&&i["coords"]){
+                        filter.push(i);
+                    }
+                }
+            }else{
+                filter.push(i);
+            }
+        }
+        filter = filterList(filter, { built, gt, dwt, size });
+        var pages = filter.length/items
         if(pages%1!=0){
             pages = parseInt(pages)+1;
         }else{
@@ -29,11 +51,11 @@ const getList = async(req, res = response ) => {
             ok: true,
             msg: {
                 info: {
-                    vessels: dbUser.length,
+                    vessels: filter.length,
                     pages: pages,
                     actualPage: page
                 },
-                vessel: dbUser.slice(x, y)
+                vessel: filter.slice(x, y)
             }
         });
     } catch (error) {

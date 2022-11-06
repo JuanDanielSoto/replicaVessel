@@ -7,6 +7,7 @@ import { SearchComponent } from './dashboard/search/search.component';
 import { SearchResultsComponent } from './dashboard/search-results/search-results.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { ListadoComponent } from './listado/listado.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { ListadoComponent } from './listado/listado.component';
     ListadoComponent],
   imports: [
     CommonModule,
-    ProtectedRoutingModule
+    ProtectedRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ProtectedModule { }
