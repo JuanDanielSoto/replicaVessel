@@ -9,43 +9,51 @@
 <hr>
 <div class="listado">
   <h3>Filtros:</h3>
-  <div style="column-count:3">
-    <li align="right">
-      <h4>Construido:</h4>
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
-    </li>
-  </div>
-  <div style="column-count:3">
-    <li align="right">
-      <h4>GT:</h4>
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
-    </li>
-  </div>
-  <div style="column-count:3">
-    <li align="right">
-      <h4>DWT:</h4>
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
-    </li>
-  </div>
-  <div style="column-count:3">
-    <li align="right">
-      <h4>Tamaño (m):</h4>
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="min" class="form-control">
-      <input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="number" placeholder="max" class="form-control">
-    </li>
-  </div>
-  <div style="column-count:3">
-    <li>-</li>
-    <li align="left">
-      <h4><input type="checkbox" name="cb-autos"> Con Coordenadas</h4>
-    </li>
-    <li align="left">
-      <h4><input type="checkbox" name="cb-autos"> Con Foto</h4>
-    </li>
-  </div>
+  <form [formGroup]="form"  novalidate>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>Construido:</h4>
+        <input #BuildMin type="number" placeholder="min" class="form-control">
+        <input #BuildMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>GT:</h4>
+        <input #GTMin type="number" placeholder="min" class="form-control">
+        <input #GTMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>DWT:</h4>
+        <input #DWTMin type="number" placeholder="min" class="form-control">
+        <input #DWTMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>Tamaño (m):</h4>
+        <input #SizeMin type="number" placeholder="min" class="form-control">
+        <input #SizeMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li>-</li>
+      <li align="left">
+        <h4><input #coors type="checkbox" name="cb-autos" value="coors" [value]="coors.value" (change)="onCheckboxChange($event)"> Con coordenadas</h4>
+      </li>
+      <li align="left">
+        <h4><input #photo type="checkbox" name="cb-autos" value="photo" [value]="photo.value" (change)="onCheckboxChange($event)"> Con Foto</h4>
+      </li>
+    </div>
+    <div style="column-count:1">
+      <li align="right">
+        <button style="border-width:10px;background-color:#1abc9c;" (click)="aplicar(BuildMin.value, BuildMax.value, GTMin.value, GTMax.value, DWTMin.value, DWTMax.value, SizeMin.value, SizeMax.value)">Aplicar Filtros</button>
+      </li>
+    </div>
+  </form>
+<p>{{ form.value | json }}</p>
   <!-- <span>
     Search:<input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="text" placeholder="Buscar..." class="form-control">
   </span> -->

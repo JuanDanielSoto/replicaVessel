@@ -3,6 +3,17 @@ export interface List {
   msg: Msg;
 }
 
+export interface BodyList {
+  page:number;
+  items:number;
+  photo?:boolean;
+  coors?:boolean;
+  built?:string;
+  gt?:string;
+  dwt?:string;
+  size?:string;
+}
+
 export interface Msg {
   info:   Info;
   vessel: Vessel[];
