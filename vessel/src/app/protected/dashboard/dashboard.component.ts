@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
-import { Vessel } from '../interfaces/mongoInter';
+import { Vessel } from '../interfaces/List';
 import { PlacesService } from '../services/places.service';
 
 @Component({
