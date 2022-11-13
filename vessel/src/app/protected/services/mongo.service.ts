@@ -5,7 +5,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AuthResponse, UpdateResponse } from 'src/app/auth/interfaces/interfaces';
 import { environment } from 'src/environments/environment';
 import { BodyList, List } from '../interfaces/List';
-import { Vessel } from '../interfaces/mongoInter';
 
 @Injectable({
   providedIn: 'root'
