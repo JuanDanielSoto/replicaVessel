@@ -3,6 +3,7 @@
   top:20px;
   left:100px;
   right:100px;
+  height: auto;
 
   background-color: white;
   padding:20px;
@@ -10,9 +11,15 @@
   border-radius: 5px;
 }
 
+#columnas{
+  column-count:3;
+  column-gap:20px;
+  column-rule:4px gray;
+}
+
 .props{
   overflow-y: auto;
-  max-height: 25em;
+  max-height: 70em;
 }
 
 .header {

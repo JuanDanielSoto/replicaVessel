@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Vessel } from '../../interfaces/mongoInter';
+import { Vessel } from '../../interfaces/List';
 import { MapService } from '../../services';
 import { MongoService } from '../../services/mongo.service';
 
@@ -15,8 +15,9 @@ export class SearchResultsComponent implements OnInit {
   keys: string[] = [];
   values: any[] = [];
 
-  constructor() {
 
+
+  constructor() {
   }
 
   ngOnInit() {

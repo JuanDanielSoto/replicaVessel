@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Vessel } from '../../interfaces/mongoInter';
+import { Vessel } from '../../interfaces/List';
 
 @Component({
   selector: 'app-search',

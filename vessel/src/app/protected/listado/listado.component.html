@@ -1,4 +1,3 @@
-
 <header class="header">
   <h1>Listado</h1>
   <p>User: {{usuario.name}} |
@@ -7,31 +6,105 @@
     </button>
   </p>
 </header>
-
 <hr>
 <div class="listado">
-  <span>
+  <h3>Filtros:</h3>
+  <form [formGroup]="form"  novalidate>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>Construido:</h4>
+        <input #BuildMin type="number" placeholder="min" class="form-control">
+        <input #BuildMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>GT:</h4>
+        <input #GTMin type="number" placeholder="min" class="form-control">
+        <input #GTMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>DWT:</h4>
+        <input #DWTMin type="number" placeholder="min" class="form-control">
+        <input #DWTMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li align="right">
+        <h4>Tamaño (m):</h4>
+        <input #SizeMin type="number" placeholder="min" class="form-control">
+        <input #SizeMax type="number" placeholder="max" class="form-control">
+      </li>
+    </div>
+    <div style="column-count:3">
+      <li>-</li>
+      <li align="left">
+        <h4><input #coors type="checkbox" name="cb-autos" value="coors" [value]="coors.value" (change)="onCheckboxChange($event)"> Con coordenadas</h4>
+      </li>
+      <li align="left">
+        <h4><input #photo type="checkbox" name="cb-autos" value="photo" [value]="photo.value" (change)="onCheckboxChange($event)"> Con Foto</h4>
+      </li>
+    </div>
+    <div style="column-count:1">
+      <li align="right">
+        <button style="border-width:10px;background-color:#1abc9c;" (click)="aplicar(BuildMin.value, BuildMax.value, GTMin.value, GTMax.value, DWTMin.value, DWTMax.value, SizeMin.value, SizeMax.value)">Aplicar Filtros</button>
+      </li>
+    </div>
+  </form>
+  <!-- <span>
     Search:<input #txtQuery (keyup)="onQueryChanges(txtQuery.value) " type="text" placeholder="Buscar..." class="form-control">
-  </span>
-  <div class="props">
-    <table class="table table-striped table-bordered props">
-      <thead>
-        <tr>
-          <th>Indice</th>
-          <th>Nombre</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let name of  this.names;let indice=index">
-        <tr>
-          <td>{{indice+1}}</td>
-          <td>
-            <button routerLink="/listado/map/{{name}}" >
-              {{name}}
-          </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  </span> -->
+  <hr>
+  <div *ngIf="this.list!=null">
+
+    <div style="align-content:right;column-count:2">
+      <h3>Página actual -> {{this.page}}</h3>
+      <div align="right">
+        <button (click)="pageSelect(1)" style="color:blue;"> 1 </button>,
+        <span *ngFor="let page of this.pagesBefore" >
+          <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
+        </span>
+        ...
+        <span *ngFor="let page of this.pagesAfter">
+          <button (click)="pageSelect(page)" style="color:blue;"> {{page}} </button>,
+        </span>
+        <button (click)="pageSelect(this.list.msg.info.pages)" style="color:blue;"> {{this.list!.msg.info.pages}} </button>
+      </div>
+    </div>
+    <div class="props">
+      <table class="table table-bordered props" style="height: 100%;">
+        <thead>
+          <tr>
+            <th>Indice</th>
+            <th>Imágen</th>
+            <th>Nombre</th>
+            <th>Construido</th>
+            <th>GT</th>
+            <th>DWT</th>
+            <th>Tamaño (m)</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let name of this.list.msg?.vessel;let indice=index">
+          <tr>
+            <td>{{indice+1}}</td>
+            <td style="left:10px;">
+              <img src={{name.Photo}} style="height:75px; width:110 px;">
+            </td>
+            <td>
+              <button routerLink="/listado/map/{{name.Vessel_Name}}">
+                {{name.Vessel_Name}}
+            </button>
+            </td>
+            <td>{{name.Built}}</td>
+            <td>{{name.GT}}</td>
+            <td>{{name.DWT}}</td>
+            <td>{{name.Size_m}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <h6 class="listado">Unidad de Investigación y Desarrollo Tecnológico | Christian Ísai Rodriguez</h6>
 </div>
