@@ -8,6 +8,9 @@
 </header>
 <hr>
 <div class="listado">
+  <button class="custom-button"(click)="iniciarScrap()">Actualizar Base de Datos</button>
+</div>
+<div class="listado">
   <h3>Filtros:</h3>
   <form [formGroup]="form"  novalidate>
     <div style="column-count:3">
@@ -49,7 +52,7 @@
     </div>
     <div style="column-count:1">
       <li align="right">
-        <button style="border-width:10px;background-color:#1abc9c;" (click)="aplicar(BuildMin.value, BuildMax.value, GTMin.value, GTMax.value, DWTMin.value, DWTMax.value, SizeMin.value, SizeMax.value)">Aplicar Filtros</button>
+        <button class="custom-button" (click)="aplicar(BuildMin.value, BuildMax.value, GTMin.value, GTMax.value, DWTMin.value, DWTMax.value, SizeMin.value, SizeMax.value)">Aplicar Filtros</button>
       </li>
     </div>
   </form>

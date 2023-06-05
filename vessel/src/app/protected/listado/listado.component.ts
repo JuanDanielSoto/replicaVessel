@@ -145,4 +145,9 @@ export class ListadoComponent{
     this.page = 1;
     this.pageSelect(1);
   }
+
+  iniciarScrap(){
+    console.log("Aqui pondria la lógica del scrap... si tan solo la tuviera lista en backend...");
+  }
+
 }
