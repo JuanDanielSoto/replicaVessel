@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { obtenerdatos, scrapData, getList } = require('../controllers/element');
+const { obtenerdatos, scrapData, getList, scrapAllData } = require('../controllers/element');
 
 
 const router = Router();
@@ -19,6 +19,11 @@ router.post( '/list',[
 router.put( '/scrap', [
     check('Vessel_Name', 'El nombre es obligatorio').not().isEmpty()],
     scrapData 
+    );
+
+router.put( '/scrap/all', [
+    check('Vessel_Name', 'El nombre es obligatorio').not().isEmpty()],
+    scrapAllData 
     );
 
 

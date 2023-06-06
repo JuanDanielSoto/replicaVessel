@@ -12,7 +12,7 @@ async function scrap(url){
     })
     // Approach 1:
     await page.goto(url);
-
+    //No esta apareciendo la lat y devuelve error
     const [elat] = await page.$x("/html/body/div[1]/div/main/div/section[2]/div/div[1]/div[1]/div[2]/div/div[1]/div[2]");
     const srcLat = await elat.getProperty("textContent");
     const jsonLat = await srcLat.jsonValue();

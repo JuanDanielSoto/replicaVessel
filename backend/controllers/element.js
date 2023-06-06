@@ -80,6 +80,7 @@ const obtenerdatos = async(req, res = response ) => {
             });
         }
         // Respuesta del servicio
+        console.log("/api/elements  200");
         return res.json({
             ok: true,
             msg: dbUser
@@ -95,28 +96,30 @@ const obtenerdatos = async(req, res = response ) => {
 }
 
 const scrapData = async(req, res = response ) => {
-
+    console.log("/api/elements/scrap");
     const { Vessel_Name } = req.body;
     // Leer la base de datos
     try {
         const dbUser = await Vessel.findOne({ Vessel_Name:Vessel_Name });
         if(  !dbUser ) {
+            console.log("400");
             return res.status(400).json({
                 ok: false,
                 msg: Vessel_Name+' no existe'
             });
         }
         // Respuesta del servicio
+        console.log(dbUser.Source);
         const coors = await scrap( dbUser.Source).then((coor) => {
             return coor;
-        })
+        });
+        console.log("200");
         return res.json({
             ok:true,
             msg: coors
         });
     } catch (error) {
-        console.log(error);
-
+        console.log("500", error);
         return res.status(500).json({
             ok: false,
             msg: 'Hable con el administrador'
@@ -124,8 +127,16 @@ const scrapData = async(req, res = response ) => {
     }
 }
 
+const scrapAllData = async() =>{
+    return res.json({
+        ok:true,
+        msg: coors
+    });
+}
+
 module.exports = {
     obtenerdatos,
     scrapData,
-    getList
+    getList,
+    scrapAllData
 }
