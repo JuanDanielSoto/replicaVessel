@@ -86,7 +86,6 @@ export class ListadoComponent{
   logout() {
     this.router.navigateByUrl('/auth');
     this.authService.logout();
-
   }
 
   onQueryChanges(query: string = "") {

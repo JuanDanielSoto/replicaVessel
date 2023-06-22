@@ -8,6 +8,7 @@ import { SearchResultsComponent } from './dashboard/search-results/search-result
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { ListadoComponent } from './listado/listado.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { VesselDetailComponent } from './vessel-detail/vessel-detail.component';
 
 
 
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MapViewComponent,
     SearchComponent,
     SearchResultsComponent,
-    ListadoComponent],
+    ListadoComponent,
+    VesselDetailComponent],
   imports: [
     CommonModule,
     ProtectedRoutingModule,

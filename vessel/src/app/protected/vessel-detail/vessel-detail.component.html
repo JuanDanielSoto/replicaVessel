@@ -1,0 +1,66 @@
+<header class="header">
+  <h1>{{test}}</h1>
+  <p>User: {{usuario.name}} |
+    <button (click)="logout()">
+        Logout
+    </button>
+  </p>
+</header>
+<hr>
+<button routerLink="/listado" class="custom-button">Volver</button>
+<button routerLink="/listado/{{this.vessel.Vessel_Name}}/map" class="custom-button" style="left: auto;">Ver en mapa</button>
+
+<div class="listado">
+
+  <div class="container">
+    <div class="item">
+      <div class="foto">
+        <img src="{{this.vessel.Photo}}n" alt="Imagen">
+      </div>
+      <div class="descripcion">
+        <h2>Título del item</h2>
+        <p>Descripción del item</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="item">
+      <div class="foto">
+        <img src="{{this.vessel.Photo}}n" alt="Imagen">
+      </div>
+      <div class="descripcion">
+        <h2>Título del item</h2>
+        <p>Descripción del item</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="item">
+        <div class="foto">
+          <img src="{{this.vessel.Photo}}n" alt="Imagen">
+        </div>
+        <div class="descripcion">
+          <h2>Título del item</h2>
+          <p>he current position of PEMEX EHECATL is at Gulf of Mexico reported 35 mins ago by AIS. The vessel is en route to COATZACOALCOS MX, sailing at a speed of 9.9 knots and expected to arrive there on Jun 13, 06:00. The vessel PEMEX EHECATL (IMO: 9798313, MMSI 345010084) is a Offshore Tug/Supply Ship built in 2019 (4 years old) and currently sailing under the flag of Mexico.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="item">
+        <div class="foto">
+          <img src="{{this.vessel.Photo}}n" alt="Imagen">
+        </div>
+        <div class="descripcion">
+          <h2>Título del item</h2>
+          <p>Descripción del item</p>
+        </div>
+      </div>
+
+</div>
+
+
+<!-- <button routerLink="/listado/{{name.Vessel_Name}}/map">
+  {{name.Vessel_Name}}
+</button> -->
